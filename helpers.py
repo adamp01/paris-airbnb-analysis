@@ -44,7 +44,7 @@ def geocode_location(location: str) -> tuple:
     Returns:
         location coordiantes
     """
-    API_KEY = 'AIzaSyDGiFKjo3GieLooswxMjD9CAy7SvVByoz0' # os.getenv('API_KEY')
+    API_KEY = os.getenv('API_KEY')
     BASE_URL = 'https://maps.googleapis.com/maps/api/geocode/json?'
 
     location = 'address=' + location.replace(' ', '+')
