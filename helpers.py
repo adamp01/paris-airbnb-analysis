@@ -2,6 +2,8 @@ import requests
 import json
 import os
 
+API_KEY = os.getenv('API_KEY')
+
 def get_distance(origin: tuple, dest: tuple) -> dict:
     """Method to determine the distance by Public Transport between an origin and destination.
     Args:
@@ -11,7 +13,6 @@ def get_distance(origin: tuple, dest: tuple) -> dict:
     Returns:
         json-object converted to dict of distance data
     """
-    API_KEY = os.getenv('API_KEY')
     BASE_URL = 'https://maps.googleapis.com/maps/api/distancematrix/json?'
 
     origin = str(origin[0]) + ',' + str(origin[1])
@@ -44,7 +45,6 @@ def geocode_location(location: str) -> tuple:
     Returns:
         location coordiantes
     """
-    API_KEY = os.getenv('API_KEY')
     BASE_URL = 'https://maps.googleapis.com/maps/api/geocode/json?'
 
     location = 'address=' + location.replace(' ', '+')
@@ -55,4 +55,4 @@ def geocode_location(location: str) -> tuple:
     response = requests.get(url).json()
     geo = response['results'][0]['geometry']['location']
     return (geo['lat'], geo['lng'])
-    
+   
